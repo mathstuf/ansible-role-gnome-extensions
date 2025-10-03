@@ -22,15 +22,15 @@ In addition, the role currently uses Debian/Ubuntu-specific tools.
 
 | Variable name | Required | Default value | Description |
 |---------------|----------|---------------|-------------|
-| `gnome_extensions_url` | yes | `https://extensions.gnome.org` | The base of the url used to download Gnome extensions. |
-| `gnome_packages` | yes | `[{name: 'gnome-shell', state: 'present'}, {'gnome-shell-extensions', 'present'}]` | The packages required on the target host for the role to function in the first place. |
+| `gnome_extensions_url` | no  | `https://extensions.gnome.org` | The base of the url used to download Gnome extensions. |
+| `gnome_packages` | no  | `[{name: 'gnome-shell', state: 'present'}, {'gnome-shell-extensions', 'present'}]` | The packages required on the target host for the role to function in the first place. |
 
 ### Defaults
 
 | Variable name | Required | Default value | Description |
 |---------------|----------|---------------|-------------|
 | `gnome_user`       | yes | `n/a` | The user account to use to install extensions and to install extensions for. |
-| `gnome_extensions` | yes | `[]` | A list of items including the url and desired existence/enabled state for each Gnome extension (see below for details). |
+| `gnome_extensions` | no  | `[]` | A list of items including the url and desired existence/enabled state for each Gnome extension (see below for details). |
 
 #### `gnome_extensions` variable
 
@@ -40,7 +40,7 @@ Each item has variable has three required properties:
 |---------------|----------|------|-----------------|
 | `url`         | yes      | string  | A url suitable for [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html) |
 | `state`       | yes      | string  | `present` or `absent` |
-| `enabled`     | yes      | boolean | `True`, `False`, or [anything ansible regards as 'truthy'](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#conditionals-based-on-variables) |
+| `installed`   | yes      | boolean | `True`, `False`, or [anything ansible regards as 'truthy'](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#conditionals-based-on-variables) |
 
 ## Dependencies
 
@@ -58,8 +58,6 @@ The following playbook:
 - name: Manage Gnome extensions.
   hosts: servers
   vars:
-    gnome_user: "instance"
-    gnome_extensions:
     gnome_user: "instance"
     gnome_extensions:
       - url: "https://extensions.gnome.org/extension/750/openweather/"
