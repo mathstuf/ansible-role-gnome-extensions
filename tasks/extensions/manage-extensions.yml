@@ -59,7 +59,7 @@
   tags:
     - molecule-notest
 
-- name: Uninstall extension "\"{{ gnome_extension_name }}\"".
+- name: Remove extension "\"{{ gnome_extension_name }}\"".
   ansible.builtin.include_tasks: "extensions/remove-extension.yml"
   when:
     - "gnome_extension_uuid in register__gnome_extensions.stdout"
