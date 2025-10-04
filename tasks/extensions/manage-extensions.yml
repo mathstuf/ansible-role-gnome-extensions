@@ -16,6 +16,8 @@
 - name: Retrieve extension data.
   ansible.builtin.uri:
     url: "{{ gnome_extensions_url }}/extension-info/?pk={{ gnome_extension_id }}&shell_version={{ gnome_version }}"
+    return_content: true
+    body_format: json
   register: register__gnome_extension_data
 
 - name: Extract the uuid of the current extension.
