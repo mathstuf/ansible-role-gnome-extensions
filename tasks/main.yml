@@ -2,8 +2,11 @@
 # tasks file for ansible-role-gnome-extensions
 
 - name: Install required packages.
-  ansible.builtin.package: "{{ gnome_packages }}"
+  ansible.builtin.package: "{{ gnome_package }}"
   when: "{{ gnome_packages }}"
+  loop: "{{ gnome_packages }}"
+  loop_control:
+    loop_var: 'gnome_package'
 
 - name: Get the Gnome version.
   ansible.builtin.command: "gnome-shell --version"
