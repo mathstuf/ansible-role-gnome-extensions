@@ -24,6 +24,7 @@ In addition, the role currently uses Debian/Ubuntu-specific tools.
 |---------------|----------|---------------|-------------|
 | `gnome_extensions_url` | yes | `https://extensions.gnome.org` | The base of the url used to download Gnome extensions. |
 | `gnome_packages` | yes | `[{name: 'gnome-shell', state: 'present'}, {'gnome-shell-extensions', 'present'}]` | The packages required on the target host for the role to function in the first place. |
+| `gnome_dbus_env` | no | None | Environment variable settings to connect to D-Bus. |
 
 ### Defaults
 

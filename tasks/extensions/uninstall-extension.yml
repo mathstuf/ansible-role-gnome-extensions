@@ -1,8 +1,5 @@
 ---
 # Tasks file for ansible-role-gnome-extensions: Uninstall Extension
 
-# @todo Find out where exactly gnome-extensions is available and use it here if
-#   possible (i.e. gnome-extensions disable ...).
-- name: Uninstall extension with gnome-shell-extension-tool.
-  ansible.builtin.command: "gnome-shell-extension-tool disable {{ gnome_extension_uuid }}" # noqa no-changed-when
-  become: "{{ gnome_user }}"
+- name: Uninstall extension with gnome-extensions.
+  ansible.builtin.command: "env {{ gnome_dbus_env }} gnome-extensions uninstall {{ gnome_extension_uuid }}" # noqa no-changed-when

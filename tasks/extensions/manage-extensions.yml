@@ -8,8 +8,7 @@
 # @todo Find out where exactly gnome-extensions is available and use it here if
 #   possible (i.e. gnome-extensions list).
 - name: Find all Gnome extensions.
-  ansible.builtin.command: "find {{ gnome_extensions_dir }} -mindepth 1 -maxdepth 1 -type d -printf \"%P\n\""
-  become_user: "{{ gnome_user }}"
+  ansible.builtin.command: "env {{ gnome_dbus_env }} gnome-extensions list"
   register: register__gnome_extensions
   changed_when: false
 

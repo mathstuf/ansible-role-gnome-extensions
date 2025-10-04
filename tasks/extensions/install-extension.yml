@@ -1,8 +1,5 @@
 ---
 # Tasks file for ansible-role-gnome-extensions: Install Extension
 
-# @todo Find out where exactly gnome-extensions is available and use it here if
-#   possible (i.e. gnome-extensions enable ...).
-- name: Install extension with gnome-shell-extension-tool.
-  ansible.builtin.command: "gnome-shell-extension-tool enable {{ gnome_extension_uuid }}" # noqa no-changed-when
-  become: "{{ gnome_user }}"
+- name: Install extension with gnome-extensions.
+  ansible.builtin.command: "env {{ gnome_dbus_env }} gnome-extensions install --force {{ register__gnome_extension_temp.path }}/{{ gnome_extension_uuid }}.zip" # noqa no-changed-when
