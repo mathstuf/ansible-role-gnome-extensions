@@ -3,6 +3,7 @@
 
 - name: Install required packages.
   ansible.builtin.package: "{{ gnome_packages }}"
+  when: "{{ gnome_packages }}"
 
 - name: Get the Gnome version.
   ansible.builtin.command: "gnome-shell --version"
